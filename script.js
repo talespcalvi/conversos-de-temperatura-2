@@ -1,74 +1,46 @@
-function mudarRed(){
-    var body = document.querySelector('body')
-    ;
+function mudarCorDeFundo() {
+    var temperatureInput = document.getElementById('temperature');
+    var temperature = temperatureInput.value;
 
-    body.style.backgroundColor = 'red'
+    // Conversão de temperatura
+    var celsius = parseFloat(temperature);
+    var kelvin = celsius + 273.15;
+    var fahrenheit = (celsius * 9 / 5) + 32;
 
-    var temperatura = (document.getElementsById('red').value)
-    
-    if (temperatura > 0){
-       var red = 0 + red;
-       /*var green = 255 - red;
-       var blue = 0;*/
-       var alpha = 0.5;
-    }
-    else {
-        var red = 0
-        /*var green = 255 + red
-        var blue = 0 - red*/
-        var alpha = 0.8
-    }
+    // Ajuste da cor de fundo
+    var body = document.querySelector('body');
+    var red, green, blue;
 
-    body.style.backgroundColor =  
-    `rgb(${red})`
-}
-
-function mudarGreen(){
-    var body = document.querySelector('body')
-    ;
-
-    body.style.backgroundColor = 'green'
-
-    var temperatura = (document.getElementsById('green').value)
-    
-    if (temperatura > 0){
-       /*var red = 0 + green;*/
-       var green = 255 - green;
-       /*var blue = 0;*/
-       var alpha = 0.5;
-    }
-    else {
-        /*var red = 0*/
-        var green = 255 + green
-        /*var blue = 0 - green*/
-        var alpha = 0.8
+    if (celsius >= 0 && celsius <= 100) {
+        // Cores quentes para temperaturas maiores
+        red = 255;
+        green = Math.round((celsius / 100) * 255);
+        blue = 0;
+    } else if (celsius < 0 && celsius >= -100) {
+        // Cores frias para temperaturas menores
+        red = 0;
+        green = Math.round(((-celsius) / 100) * 255);
+        blue = 255;
+    } else {
+        // Para temperaturas fora do intervalo -100°C a 100°C, define cor padrão
+        red = 255;
+        green = 255;
+        blue = 255;
     }
 
-    body.style.backgroundColor =  
-    `rgb(${green})`
-}
+    // Atualiza a cor de fundo
+    body.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
 
-function mudarBlue(){
-    var body = document.querySelector('body')
-    ;
+    // Atualiza os valores dos sliders de RGB com base na temperatura
+    var redInput = document.getElementById('red');
+    var greenInput = document.getElementById('green');
+    var blueInput = document.getElementById('blue');
 
-    body.style.backgroundColor = 'blue'
+    redInput.value = red;
+    greenInput.value = green;
+    blueInput.value = blue;
 
-    var temperatura = (document.getElementsById('blue').value)
-    
-    if (temperatura > 0){
-       /*var red = 0 + blue;
-       var green = 255 - blue;*/
-       var blue = 0;
-       var alpha = 0.5;
-    }
-    else {
-        /*var red = 0
-        var green = 255 + blue*/
-        var blue = 0 - blue
-        var alpha = 0.8
-    }
-
-    body.style.backgroundColor =  
-    `rgb(${blue})`
+    // Atualiza o valor de temperatura convertida exibido na tela
+    document.getElementById('kelvin').textContent = kelvin.toFixed(2);
+    document.getElementById('fahrenheit').textContent = fahrenheit.toFixed(2);
 }
