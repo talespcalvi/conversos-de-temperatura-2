@@ -15,10 +15,16 @@
         <input id="green" type="range" max="200" min="100" oninput="mudarGreen()">
         <h1>B</h1>
         <input id="blue" type="range" max="200" min="100" oninput="mudarBlue()">
+        <input id="temperature" type="number" placeholder="Digite a temperatura" oninput="mudarCorDeFundo()">
+        <h1 id="t">Temperatura (°C)</h1>
+
+        <h2 id="tc">Temperatura convertida:</h2>
+        <p><span id="kelvin"></span> K</p>
+        <p><span id="fahrenheit"></span> °F</p>
     </form>
 
 
 
     <script src="script.js"></script>
 </body>
-</html>
+</html> 
